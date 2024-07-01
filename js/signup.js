@@ -11,11 +11,22 @@ signupForm.addEventListener('submit', (e)=>{
     const isUserRegistered = Users.find(user => user.email === email)
 
     if (isUserRegistered){
-        return alert ('¡Este usuario ya esta registrado!')
+        return Swal.fire({
+            title: '¡Perfecto!',
+            text: '¡Este usuario ya esta registrado!',
+            icon: 'success',
+            confirmButtonText: 'Continuar',
+        }).then(() => {
+            window.location = "./login.html"
+        });
     }
     Users.push({name:name, email:email, password:password})
     localStorage.setItem('users', JSON.stringify(Users))
-    alert ('¡Usuario registrado exitosamente!')
-
-    window.location = "./login.html";
+    Swal.fire({
+        title: '¡Perfecto!',
+        text: '¡Usuario registrado exitosamente!',
+        icon: 'success',
+        confirmButtonText: 'Continuar',
+    });
+    window.location = "./login.html"
 })
